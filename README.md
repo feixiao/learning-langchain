@@ -20,7 +20,7 @@ To run the examples, you can clone the repository and run the examples in your p
 ## Quick Start
 
 ### Environment variables setup
-
+#### OpenAI
 First, we need the environment variables required to run the examples in this repository.
 
 You can find the full list in the `.env.example` file. Copy this file to a `.env` and fill in the values:
@@ -41,6 +41,13 @@ If you want to run the production example in chapter 9, you need a Supabase acco
 2. Once you have an account, create a new project then navigate to the settings section.
 3. In the settings section, navigate to the API section to see your keys.
 4. Copy the project URL and service_role key and add them to the `.env` file as values for `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`.
+
+#### Ollama
+```bash
+ollama serve
+ollama pull deepseek-r1:14b
+ollama run deepseek-r1:14b
+```
 
 ### Running the chapter examples
 
