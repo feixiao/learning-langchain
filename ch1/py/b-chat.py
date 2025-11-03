@@ -31,7 +31,7 @@ def build_model(provider: str, model_name: Optional[str] = None):
 		return ChatOpenAI(model=name)
 
 	if provider == "ollama":
-		from langchain_community.chat_models import ChatOllama
+		from langchain_ollama import ChatOllama
 
 		name = model_name or os.getenv("LLM_MODEL") or "deepseek-r1:14b"
 		return ChatOllama(model=name)
