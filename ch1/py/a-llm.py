@@ -32,7 +32,7 @@ def build_model(provider: str, model_name: Optional[str] = None):
 
 	if provider == "ollama":
 		# 延迟导入，避免未安装依赖或本地无用时报错
-		from langchain_community.chat_models import ChatOllama
+		from langchain_ollama import ChatOllama
 
 		name = model_name or os.getenv("LLM_MODEL") or "deepseek-r1:14b"
 		return ChatOllama(model=name)
