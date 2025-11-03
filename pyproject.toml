@@ -35,4 +35,4 @@ packages = []
 "*" = ["py.typed"]
 
 [project.scripts]
-langgraph-dev = "langgraph.cli:dev_command --config ch9/py/langgraph.json --verbose"
+langgraph-dev = "langgraph.cli:dev_command"
