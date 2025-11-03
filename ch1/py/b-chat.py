@@ -64,6 +64,8 @@ def main():
 	args = parser.parse_args()
 
 	model = build_model(args.provider, args.model)
+
+    # A message sent from the perspective of the human, with the user role
 	messages = [HumanMessage(args.prompt)]
 	result = model.invoke(messages)
 	content = getattr(result, "content", result)
