@@ -1,5 +1,7 @@
 from langchain_openai.chat_models import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
+from typing import Optional
+import os
 
 # both `template` and `model` can be reused many times
 
@@ -11,7 +13,28 @@ Question: {question}
 
 Answer: """)
 
-model = ChatOpenAI(model="gpt-3.5-turbo")
+def build_model(provider: str, model_name: Optional[str] = None):
+	provider = provider.lower()
+
+	if provider == "openai":
+		# 延迟导入，避免未安装依赖或本地无用时报错
+		from langchain_openai import ChatOpenAI
+
+		name = model_name or os.getenv("LLM_MODEL") or "gpt-4o-mini"
+		return ChatOpenAI(model=name)
+
+	if provider == "ollama":
+		# 延迟导入，避免未安装依赖或本地无用时报错
+		from langchain_ollama import ChatOllama
+
+		name = model_name or os.getenv("LLM_MODEL") or "deepseek-r1:14b"
+		return ChatOllama(model=name)
+
+	raise ValueError(
+		f"Unsupported provider: {provider}. Use 'openai' or 'ollama'."
+	)
+
+model = build_model("ollama")
 
 # `prompt` and `completion` are the results of using template and model once
 
