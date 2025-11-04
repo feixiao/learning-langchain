@@ -49,6 +49,9 @@ messages = [
 
 model = build_model("ollama")
 # Create trimmer
+# 触发了基于 tokenizer 的“token 计数”
+# 你在 d-trim-messages.py 里这样写：trim_messages(..., token_counter=model, ...)。
+# 对非 OpenAI 模型，LangChain 可能会调用 Transformers 的分词器来做 token 计数，从而需要下载相应 tokenizer（来源就是 huggingface.co）。
 trimmer = trim_messages(
     max_tokens=65,
     strategy="last",
