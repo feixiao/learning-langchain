@@ -53,6 +53,7 @@ builder.add_edge("chatbot", END)
 graph = builder.compile(checkpointer=MemorySaver())
 
 # Configure thread
+# 使用 thread_id 可以让图在不同的对话线程中保持独立的状态
 thread1 = {"configurable": {"thread_id": "1"}}
 
 # Run with persistence
