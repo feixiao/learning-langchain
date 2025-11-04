@@ -21,8 +21,9 @@ dependencies = [
     "langsmith>=0.3.2",
     "langgraph-checkpoint-sqlite>=2.0.3",
     "duckduckgo-search>=7.3.0",
-    "langgraph-cli>=0.1.73"，
-    "ollama >= 0.6.0"
+    "langgraph-cli>=0.1.73",
+    "ollama>=0.6.0",
+    "torch>=2.5.0"
 ]
 
 [build-system]

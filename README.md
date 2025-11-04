@@ -77,6 +77,9 @@ After activation, your terminal prompt should prefix with (venv), indicating tha
 3. Install the dependencies in the pyproject.toml file:
 ```bash
 pip install -e .
+
+# 怎么保存到pyproject.toml呢
+
 ```
 
 4. Verify the installation:

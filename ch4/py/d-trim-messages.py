@@ -4,7 +4,32 @@ from langchain_core.messages import (
     AIMessage,
     trim_messages,
 )
-from langchain_openai import ChatOpenAI
+
+from typing import Optional
+import os
+
+
+def build_model(provider: str, model_name: Optional[str] = None):
+	provider = provider.lower()
+
+	if provider == "openai":
+		# 延迟导入，避免未安装依赖或本地无用时报错
+		from langchain_openai import ChatOpenAI
+
+		name = model_name or os.getenv("LLM_MODEL") or "gpt-4o-mini"
+		return ChatOpenAI(model=name)
+
+	if provider == "ollama":
+		# 延迟导入，避免未安装依赖或本地无用时报错
+		from langchain_ollama import ChatOllama
+
+		name = model_name or os.getenv("LLM_MODEL") or "deepseek-r1:14b"
+		return ChatOllama(model=name)
+
+	raise ValueError(
+		f"Unsupported provider: {provider}. Use 'openai' or 'ollama'."
+	)
+
 
 # Define sample messages
 messages = [
@@ -21,11 +46,13 @@ messages = [
     AIMessage(content="yes!"),
 ]
 
+
+model = build_model("ollama")
 # Create trimmer
 trimmer = trim_messages(
     max_tokens=65,
     strategy="last",
-    token_counter=ChatOpenAI(model="gpt-4o"),
+    token_counter=model,
     include_system=True,
     allow_partial=False,
     start_on="human",
