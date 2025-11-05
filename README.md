@@ -78,8 +78,8 @@ After activation, your terminal prompt should prefix with (venv), indicating tha
 ```bash
 pip install -e .
 
-# 怎么保存到pyproject.toml呢
-
+# 怎么保存到requirements.txt
+pip freeze > requirements.txt
 ```
 
 4. Verify the installation:
